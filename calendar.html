@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lịch - VSM CMS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/calendar.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="/placeholder.svg?height=40&width=40" alt="VSM Logo">
+                    <span>VSM CMS</span>
+                </div>
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i data-feather="menu"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">
+                            <i data-feather="home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="create.html" class="nav-link">
+                            <i data-feather="plus-circle"></i>
+                            <span>Tạo bài viết</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="calendar.html" class="nav-link">
+                            <i data-feather="calendar"></i>
+                            <span>Lịch</span>
+                        </a>
+                    </li>
+                    <li class="nav-item admin-only">
+                        <a href="statistics.html" class="nav-link">
+                            <i data-feather="bar-chart-2"></i>
+                            <span>Thống kê</span>
+                        </a>
+                    </li>
+                    <li class="nav-item admin-only">
+                        <a href="export.html" class="nav-link">
+                            <i data-feather="download"></i>
+                            <span>Xuất dữ liệu</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <img src="/placeholder.svg?height=32&width=32" alt="User Avatar" class="user-avatar">
+                    <div class="user-details">
+                        <span class="user-name" id="userName">Admin</span>
+                        <span class="user-role" id="userRole">Administrator</span>
+                    </div>
+                </div>
+                <button class="logout-btn" id="logoutBtn">
+                    <i data-feather="log-out"></i>
+                </button>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <h1>Lịch làm việc</h1>
+                    <p>Quản lý ghi chú và nhắc nhở</p>
+                </div>
+                
+                <div class="topbar-right">
+                    <button class="theme-toggle" id="themeToggle">
+                        <i data-feather="moon"></i>
+                    </button>
+                    <div class="calendar-controls">
+                        <button class="btn btn-secondary" id="todayBtn">Hôm nay</button>
+                        <button class="btn btn-primary" id="addNoteBtn">
+                            <i data-feather="plus"></i>
+                            Thêm ghi chú
+                        </button>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Content Area -->
+            <div class="content">
+                <div class="calendar-container">
+                    <!-- Calendar Header -->
+                    <div class="calendar-header">
+                        <div class="calendar-nav">
+                            <button class="nav-btn" id="prevMonth">
+                                <i data-feather="chevron-left"></i>
+                            </button>
+                            <h2 class="current-month" id="currentMonth">Tháng 12, 2024</h2>
+                            <button class="nav-btn" id="nextMonth">
+                                <i data-feather="chevron-right"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="view-toggle">
+                            <button class="view-btn active" data-view="month">Tháng</button>
+                            <button class="view-btn" data-view="list">Danh sách</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Calendar Grid -->
+                    <div class="calendar-grid" id="calendarGrid">
+                        <div class="calendar-weekdays">
+                            <div class="weekday">CN</div>
+                            <div class="weekday">T2</div>
+                            <div class="weekday">T3</div>
+                            <div class="weekday">T4</div>
+                            <div class="weekday">T5</div>
+                            <div class="weekday">T6</div>
+                            <div class="weekday">T7</div>
+                        </div>
+                        
+                        <div class="calendar-days" id="calendarDays">
+                            <!-- Calendar days will be generated here -->
+                        </div>
+                    </div>
+                    
+                    <!-- List View -->
+                    <div class="calendar-list" id="calendarList" style="display: none;">
+                        <div class="notes-list" id="notesList">
+                            <!-- Notes list will be generated here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Notes Sidebar -->
+                <div class="notes-sidebar" id="notesSidebar">
+                    <div class="notes-header">
+                        <h3>Ghi chú ngày <span id="selectedDate">-</span></h3>
+                        <button class="close-sidebar" id="closeSidebar">
+                            <i data-feather="x"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="notes-content">
+                        <div class="notes-list" id="dayNotes">
+                            <!-- Day notes will be displayed here -->
+                        </div>
+                        
+                        <div class="add-note-form">
+                            <textarea id="noteText" placeholder="Thêm ghi chú mới..." rows="3"></textarea>
+                            <div class="note-options">
+                                <select id="noteType">
+                                    <option value="note">Ghi chú</option>
+                                    <option value="reminder">Nhắc nhở</option>
+                                    <option value="deadline">Deadline</option>
+                                </select>
+                                <input type="time" id="noteTime">
+                            </div>
+                            <button class="btn btn-primary" id="saveNote">
+                                <i data-feather="save"></i>
+                                Lưu ghi chú
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Note Modal -->
+    <div class="modal" id="noteModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Thêm ghi chú mới</h3>
+                <button class="modal-close" id="closeModal">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <form id="noteForm">
+                    <div class="form-group">
+                        <label for="modalNoteDate">Ngày</label>
+                        <input type="date" id="modalNoteDate" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="modalNoteTime">Thời gian</label>
+                        <input type="time" id="modalNoteTime">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="modalNoteType">Loại</label>
+                        <select id="modalNoteType">
+                            <option value="note">Ghi chú</option>
+                            <option value="reminder">Nhắc nhở</option>
+                            <option value="deadline">Deadline</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="modalNoteText">Nội dung</label>
+                        <textarea id="modalNoteText" rows="4" required placeholder="Nhập nội dung ghi chú..."></textarea>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-secondary" id="cancelNote">Hủy</button>
+                        <button type="submit" class="btn btn-primary">Lưu ghi chú</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="app-footer">
+        © 2025 Viet Nam Student Marathon • vsm.org.vn@gmail.com • Phát triển bởi Phòng Công Nghệ Thông Tin
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
+    <script src="js/modules/utils.js"></script>
+    <script src="js/modules/auth.js"></script>
+    <script src="js/modules/theme.js"></script>
+    <script src="js/modules/calendar.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+  // Check authentication - redirect to login if not authenticated
+  if (!window.Auth.requireAuth()) return;
+  
+  const calendar = new CalendarManager();
+  calendar.init();
+  
+  if (typeof window.feather !== 'undefined') {
+    window.feather.replace();
+  }
+});
+    </script>
+</body>
+</html>

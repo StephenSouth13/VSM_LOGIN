@@ -1,0 +1,81 @@
+/* Dark Mode Styles */
+[data-theme="dark"] {
+  --bg-color: #1e1e1e;
+  --bg-secondary: #2a2a2a;
+  --bg-card: #2d2d2d;
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --text-muted: #888888;
+  --border-color: #404040;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  --shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Theme Toggle Animation */
+.theme-toggle {
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-toggle i {
+  transition: var(--transition);
+}
+
+[data-theme="dark"] .theme-toggle i[data-feather="moon"] {
+  transform: rotate(180deg) scale(0);
+}
+
+[data-theme="dark"] .theme-toggle i[data-feather="sun"] {
+  transform: rotate(0deg) scale(1);
+}
+
+/* Smooth theme transition */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Dark mode specific adjustments */
+[data-theme="dark"] .post-card {
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .post-card:hover {
+  border-color: var(--primary-color);
+}
+
+[data-theme="dark"] .stat-card {
+  border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .form-card {
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .thumbnail-preview {
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .search-box input {
+  background-color: var(--bg-card);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .filter-select {
+  background-color: var(--bg-card);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .pagination button {
+  background-color: var(--bg-card);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+/* Dark mode login page */
+[data-theme="dark"] .login-page {
+  background: linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%);
+}
+
+[data-theme="dark"] .login-right {
+  background: linear-gradient(135deg, rgba(39, 174, 96, 0.8) 0%, rgba(33, 145, 80, 0.8) 100%);
+}

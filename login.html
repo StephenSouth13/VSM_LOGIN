@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập - VSM CMS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <div class="login-left">
+            <div class="login-form">
+                <div class="logo">
+                    <img src="/placeholder.svg?height=60&width=60" alt="VSM Logo">
+                    <h1>VSM CMS</h1>
+                </div>
+                <h2>Chào mừng trở lại!</h2>
+                <p>Đăng nhập vào hệ thống quản lý nội dung</p>
+                
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Mật khẩu</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    
+                    <div class="form-options">
+                        <label class="checkbox">
+                            <input type="checkbox" id="remember">
+                            <span class="checkmark"></span>
+                            Ghi nhớ đăng nhập
+                        </label>
+                        <a href="#" class="forgot-password">Quên mật khẩu?</a>
+                    </div>
+                    
+                    <button type="submit" class="btn-login">Đăng nhập</button>
+                </form>
+                
+                <div class="login-footer">
+                    <p>Chưa có tài khoản? <a href="#">Liên hệ Admin</a></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="login-right">
+            <div class="login-illustration">
+                <img src="/placeholder.svg?height=400&width=500" alt="VSM Illustration">
+                <h3>Viet Nam Student Marathon</h3>
+                <p>Hệ thống quản lý nội dung nội bộ cho đội ngũ VSM</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="login-footer-bottom">
+        © 2025 Viet Nam Student Marathon • vsm.org.vn@gmail.com • Tầng 15 - UEH, 279 Nguyễn Tri Phương, Q10, TP.HCM
+    </footer>
+    
+    <script src="js/modules/utils.js"></script>
+    <script src="js/modules/auth.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - VSM CMS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="/placeholder.svg?height=40&width=40" alt="VSM Logo">
+                    <span>VSM CMS</span>
+                </div>
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i data-feather="menu"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item active">
+                        <a href="index.html" class="nav-link">
+                            <i data-feather="home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="create.html" class="nav-link">
+                            <i data-feather="plus-circle"></i>
+                            <span>Tạo bài viết</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="calendar.html" class="nav-link">
+                            <i data-feather="calendar"></i>
+                            <span>Lịch</span>
+                        </a>
+                    </li>
+                    <li class="nav-item admin-only">
+                        <a href="members.html" class="nav-link">
+                            <i data-feather="users"></i>
+                            <span>Quản lý thành viên</span>
+                        </a>
+                    </li>
+                    <li class="nav-item admin-only">
+                        <a href="statistics.html" class="nav-link">
+                            <i data-feather="bar-chart-2"></i>
+                            <span>Thống kê</span>
+                        </a>
+                    </li>
+                    <li class="nav-item admin-only">
+                        <a href="export.html" class="nav-link">
+                            <i data-feather="download"></i>
+                            <span>Xuất dữ liệu</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <img src="/placeholder.svg?height=32&width=32" alt="User Avatar" class="user-avatar">
+                    <div class="user-details">
+                        <span class="user-name" id="userName">Admin</span>
+                        <span class="user-role" id="userRole">Administrator</span>
+                    </div>
+                </div>
+                <button class="logout-btn" id="logoutBtn">
+                    <i data-feather="log-out"></i>
+                </button>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <h1>Dashboard Bài viết</h1>
+                    <p>Quản lý tất cả bài viết của VSM</p>
+                </div>
+                
+                <div class="topbar-right">
+                    <button class="theme-toggle" id="themeToggle">
+                        <i data-feather="moon"></i>
+                    </button>
+                    <div class="search-box">
+                        <i data-feather="search"></i>
+                        <input type="text" placeholder="Tìm kiếm bài viết..." id="searchInput">
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Content Area -->
+            <div class="content">
+                <!-- Statistics Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i data-feather="file-text"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 data-stat="total">0</h3>
+                            <p>Tổng bài viết</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i data-feather="eye"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 data-stat="published">0</h3>
+                            <p>Đã xuất bản</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i data-feather="edit"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 data-stat="draft">0</h3>
+                            <p>Bản nháp</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i data-feather="calendar"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 data-stat="today">0</h3>
+                            <p>Hôm nay</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Actions Bar -->
+                <div class="actions-bar">
+                    <div class="actions-left">
+                        <button class="btn btn-primary" id="createPostBtn">
+                            <i data-feather="plus"></i>
+                            Tạo bài viết mới
+                        </button>
+                    </div>
+                    
+                    <div class="actions-right">
+                        <select class="filter-select" id="categoryFilter">
+                            <option value="">Tất cả danh mục</option>
+                            <option value="news">Tin tức</option>
+                            <option value="events">Sự kiện</option>
+                            <option value="training">Huấn luyện</option>
+                            <option value="community">Cộng đồng</option>
+                        </select>
+                        <select class="filter-select" id="statusFilter">
+                            <option value="">Tất cả trạng thái</option>
+                            <option value="published">Đã xuất bản</option>
+                            <option value="draft">Bản nháp</option>
+                        </select>
+                        <select class="filter-select" id="sortFilter">
+                            <option value="newest">Mới nhất</option>
+                            <option value="oldest">Cũ nhất</option>
+                            <option value="title">Theo tiêu đề</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Posts Container -->
+                <div id="postsContainer">
+                    <!-- Posts will be loaded here -->
+                </div>
+                
+                <!-- Loading State -->
+                <div class="loading" id="loading" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Đang tải bài viết...</p>
+                </div>
+                
+                <!-- Empty State -->
+                <div class="empty-state" id="emptyState" style="display: none;">
+                    <i data-feather="file-text"></i>
+                    <h3>Chưa có bài viết nào</h3>
+                    <p>Tạo bài viết đầu tiên để bắt đầu chia sẻ nội dung</p>
+                    <button class="btn btn-primary" onclick="window.location.href='create.html'">
+                        <i data-feather="plus"></i>
+                        Tạo bài viết đầu tiên
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <footer class="app-footer">
+        © 2025 Viet Nam Student Marathon • vsm.org.vn@gmail.com • Tầng 15 - UEH, 279 Nguyễn Tri Phương, Q10, TP.HCM
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
+    <script src="js/modules/utils.js"></script>
+    <script src="js/modules/auth.js"></script>
+    <script src="js/modules/theme.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
